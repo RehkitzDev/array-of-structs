@@ -1,0 +1,16 @@
+{
+  "name": "hyperfast",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "node esbuild.live-server.js",
+    "ayy": "esbuild src/Index.ts --outfile=dist/main.js --bundle"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "esbuild": "^0.13.8"
+  },
+  "type": "module"
+}
