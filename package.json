@@ -2,9 +2,11 @@
   "name": "array-of-structs",
   "version": "0.0.1",
   "description": "",
-  "main": "./lib/index.ts",
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc -b"
   },
   "author": "",
   "license": "ISC",
