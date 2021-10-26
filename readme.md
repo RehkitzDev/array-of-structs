@@ -39,6 +39,7 @@ pos_arr.delete(5);
 
 ```
 
+
 create meta object descriptions (attributes need same byte sizes):
 ```javascript
 const player_meta = View.create_meta({
@@ -58,11 +59,13 @@ player_view.y[5 * player_view[$size_of]] = 20;
 
 ```
 
+
 create auto growing array of structs:
 ```javascript
 //creates array with 50 elements
 const [player_view, player_arr] = ArrayStruct.create(player_meta, 50);
 ```
+
 
 add elements with objects or per indicies (creation per indicies is around 3x faster: https://jsben.ch/7fhtA):
 ```javascript
