@@ -1,6 +1,6 @@
 {
   "name": "array-of-structs",
-  "version": "1.0.2",
+  "version": "0.0.1",
   "description": "",
   "main": "./lib/index.ts",
   "scripts": {
