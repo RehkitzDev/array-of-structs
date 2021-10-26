@@ -53,17 +53,8 @@ export class ArrayStruct<T>{
         index *= this.accessor[Symbols.$size_of];
 
         let last_index = (this.current_length-1) * this.accessor[Symbols.$size_of];
-        let copied = 0;
-        let accessor;
         for(const key in this.accessor){
             this.accessor[key][index] = this.accessor[key][last_index];
-            accessor = this.accessor[key];
-            copied++;
-        }
-
-        //if object has greater size than attributes
-        for(let i=copied; i < this.accessor[Symbols.$size_of]; i++){
-            accessor[index + i] = accessor[last_index + i];
         }
 
         this.current_length--;
