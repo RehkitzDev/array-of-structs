@@ -12,5 +12,6 @@
   "devDependencies": {
     "@types/jest": "^27.0.2",
     "ts-jest": "^27.0.7"
-  }
+  },
+  "repository": {"url": "https://github.com/RehkitzDev/array-of-structs"}
 }

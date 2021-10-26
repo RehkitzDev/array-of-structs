@@ -1,13 +1,13 @@
-# Array of Structs (AOS)
+# Array of Structs (AoS)
 
 Typescript library for buffer backed array of structs.
 
--supports SharedArraybuffers.
+-supports SharedArrayBuffers.
 
 ## Installation
 
 ```bash
-npm install array-of-structs
+npm i array-of-structs
 ```
 
 ## Usage
