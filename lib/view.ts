@@ -14,12 +14,6 @@ export function create_meta<T extends view_constructor>(obj: T): view_unattached
     }
 
     //@ts-ignore
-    if(obj[$size_of] != undefined){
-        //@ts-ignore
-        return_obj[$size_of] = obj[$size_of];
-        return_obj[$bytes] = i * return_obj[$size_of];
-    }
-    //@ts-ignore
     return return_obj;
 }
 

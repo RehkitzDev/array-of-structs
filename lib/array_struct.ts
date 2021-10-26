@@ -2,16 +2,15 @@ import * as Buffer from "./buffer";
 import * as View from "./view";
 import * as Types from "./types";
 import * as Symbols from "./symbols";
-import { $size_of } from ".";
 
 
-export function create<T>(component: Types.view_unattached<T>, length: number = 0): [Types.view_attached<T>, StructArray<T>]{
-    let arr = new StructArray(component, length);
+export function create<T>(component: Types.view_unattached<T>, length: number = 0): [Types.view_attached<T>, ArrayStruct<T>]{
+    let arr = new ArrayStruct(component, length);
     return [arr.accessor, arr];
 }
 
 const BUFFER_STARTING_SIZE = 16_384;
-export class StructArray<T>{
+export class ArrayStruct<T>{
     //current_length, max_length
     private _buffer_info: Int32Array;
     private _buffer: ArrayBuffer | SharedArrayBuffer;
@@ -29,7 +28,7 @@ export class StructArray<T>{
 
     public add_one(): number{
         if(1 * this.accessor[Symbols.$bytes] + this.current_length * this.accessor[Symbols.$bytes] >= this.max_length * this.accessor[Symbols.$bytes]){
-            console.warn("struct array needs to grow");
+            console.warn("array struct needs to grow");
             this._buffer = Buffer.grow_buffer(this._buffer);
             this.accessor = View.update(this.accessor, this._buffer);
             this.max_length = Math.floor(this._buffer.byteLength / this.accessor[Symbols.$bytes]);
@@ -46,23 +45,25 @@ export class StructArray<T>{
         }
     }
 
-    public delete(byte_index: number){
+    public delete(index: number){
         if(this.current_length == 0){
             return;
         }
+
+        index *= this.accessor[Symbols.$size_of];
 
         let last_index = (this.current_length-1) * this.accessor[Symbols.$size_of];
         let copied = 0;
         let accessor;
         for(const key in this.accessor){
-            this.accessor[key][byte_index] = this.accessor[key][last_index];
+            this.accessor[key][index] = this.accessor[key][last_index];
             accessor = this.accessor[key];
             copied++;
         }
 
         //if object has greater size than attributes
-        for(let i=copied; i < this.accessor[$size_of]; i++){
-            accessor[byte_index + i] = accessor[last_index + i];
+        for(let i=copied; i < this.accessor[Symbols.$size_of]; i++){
+            accessor[index + i] = accessor[last_index + i];
         }
 
         this.current_length--;
