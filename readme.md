@@ -14,7 +14,12 @@ npm install array-of-structs
 
 full example with iteration over elements:
 ```javascript
-const [pos_view, pos_arr] = ArrayStruct.create(View.create_meta({x: Types.f32, y: Types.f32}));
+const pos_meta = View.create_meta({
+    x: Types.f32, 
+    y: Types.f32
+});
+
+const [pos_view, pos_arr] = ArrayStruct.create(pos_meta);
 
 //sets elements
 for(let i=0; i < 100; i++){

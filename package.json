@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-  },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "ts-jest": "^27.0.7"
+  }
 }
